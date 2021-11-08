@@ -5,26 +5,27 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "Product")
 public class Product {
 	@Id
 	@Column(name = "prodid")
-	private Integer productId;
+	private String productId;
 	private String productname;
 	private Integer price;
     private Integer stock;
 	private String description;
-    private Integer sellerid;
+    private String sellerid;
 	private String category;
 	private String subcategory;
-	private Integer productrating;
+	private Double productrating;
 	
 
-	public Integer getProductId() {
+	public String getProductId() {
 		return productId;
 	}
-	public void setProductId(Integer productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 	public String getProductname() {
@@ -51,10 +52,10 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getSellerid() {
+	public String getSellerid() {
 		return sellerid;
 	}
-	public void setSellerid(Integer sellerid) {
+	public void setSellerid(String sellerid) {
 		this.sellerid = sellerid;
 	}
 	public String getCategory() {
@@ -69,10 +70,10 @@ public class Product {
 	public void setSubcategory(String subcategory) {
 		this.subcategory = subcategory;
 	}
-	public Integer getProductrating() {
+	public Double getProductrating() {
 		return productrating;
 	}
-	public void setProductrating(Integer productrating) {
+	public void setProductrating(Double productrating) {
 		this.productrating = productrating;
 	}
 }

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.training.entity.Product;
 
-public interface ProductRepository extends CrudRepository<Product,Integer> {
+public interface ProductRepository extends CrudRepository<Product,String> {
 
 	List<Product> findDistinctBycategory(String category);
 	@Query("SELECT a FROM Product a WHERE a.productname=:productname and a.category=:category")

@@ -1,26 +1,46 @@
 package com.training.entity;
 
-public class subscribedproduct {
-	private Integer productId;
-	private Integer sellerId;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "subscribedproduct")
+public class SubscribedProduct {
+	@Id
+	@Column(name = "buyer_id")
+	private String buyerId;
+	@Column(name = "prodId")
+	private String productId;
 	private Integer quantity;
 	
-	public Integer getProductId() {
+	public SubscribedProduct() {
+		super();
+	}
+
+	public String getBuyerId() {
+		return buyerId;
+	}
+
+	public void setBuyerId(String buyerId) {
+		this.buyerId = buyerId;
+	}
+
+	public String getProductId() {
 		return productId;
 	}
-	public void setProductId(Integer productId) {
+
+	public void setProdId(String productId) {
 		this.productId = productId;
 	}
-	public Integer getSellerId() {
-		return sellerId;
-	}
-	public void setSellerId(Integer sellerId) {
-		this.sellerId = sellerId;
-	}
+
 	public Integer getQuantity() {
 		return quantity;
 	}
+
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
 }
