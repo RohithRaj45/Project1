@@ -26,7 +26,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping("/products")
+	@RequestMapping("/getproducts")
 	public ResponseEntity<Iterable<Product>>getAllProducts() throws Exception {
 		logger.info("Searching all products");
 		Iterable<Product> products = productService.getProducts();
@@ -34,7 +34,7 @@ public class ProductController {
 		logger.info("Fetched all products Successfully...!");
 		return response;
 	}
-	@RequestMapping("/subproducts")
+	@RequestMapping("/getsubproducts")
 	public ResponseEntity<Iterable<SubscribedProduct>>getAllsubProducts() throws Exception {
 		logger.info("Searching subscribed products");
 		Iterable<SubscribedProduct> products = productService.getSProducts();
@@ -43,7 +43,7 @@ public class ProductController {
 		return response;
 	}
 	
-	@RequestMapping("/products/{category}")
+	@RequestMapping("/getproducts/{category}")
 	public ResponseEntity<Iterable<Product>> getProductsbyCategory(@PathVariable String category) throws Exception {
 		logger.info("Searching products categorically");
 		Iterable<Product> products = productService.getProductsbyCategory(category);
@@ -51,7 +51,7 @@ public class ProductController {
 		logger.info("Fetched products categorically...!");
 		return response;
 	}
-	@RequestMapping("/products/{productname}/{category}")
+	@RequestMapping("/getproducts/{productname}/{category}")
 	public ResponseEntity<Iterable<Product>> fetchproducts(@PathVariable String productname,@PathVariable String category) throws Exception {
 		logger.info("Searching products through product Name and category");
 		Iterable<Product> products = productService.fetchProducts(productname,category);
@@ -60,7 +60,7 @@ public class ProductController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/products/seller/{productId}")
+	@RequestMapping(value = "/getproducts/sellerid/{productId}")
 	public ResponseEntity<String> getSellerId(@PathVariable String productId) throws Exception {
 		logger.info("Getting sellerid");
 		String product = productService.getSellerId(productId);
@@ -70,7 +70,7 @@ public class ProductController {
 		return response;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/products")
+	@RequestMapping(method=RequestMethod.POST, value="/addproducts")
 	public ResponseEntity<String> addProduct(@RequestBody Product product) throws Exception {
 		logger.info("Ready to Add Product");
 		productService.addProduct(product);
@@ -80,7 +80,7 @@ public class ProductController {
 		return response;	
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/subproducts")
+	@RequestMapping(method=RequestMethod.POST, value="/addsubproducts")
 	public ResponseEntity<String> addProducttoWish(@RequestBody SubscribedProduct product) throws Exception {
 		logger.info("Ready to Add Subscribed Product");
 		productService.addProducttoWish(product);
@@ -90,7 +90,7 @@ public class ProductController {
 		return response;	
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/products/{productId}")
+	@RequestMapping(method=RequestMethod.PUT, value="/products/update/{productId}")
 	public ResponseEntity<String> updateProductStock(@RequestBody ProductDTO product, @PathVariable String productId) throws Exception {
 		logger.info("Ready to update Product Stock");
 		Product products=productService.updateProduct(product, productId);
@@ -100,7 +100,7 @@ public class ProductController {
 		return response;	
 	}
 	//ENTER BUYERID IN PLACE OF PRODUCTID
-	@RequestMapping(method=RequestMethod.PUT, value="/subproducts/{productId}")
+	@RequestMapping(method=RequestMethod.PUT, value="/subproducts/update/{productId}")
 	public ResponseEntity<String> updateSProduct(@RequestBody SubscribedProductDTO product, @PathVariable String productId) throws Exception {
 		logger.info("Ready to update Subscribed Product Quantity");
 		SubscribedProduct products=productService.updateSProduct(product, productId);
@@ -110,7 +110,7 @@ public class ProductController {
 		return response;	
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/products/{productId}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/products/delete/{productId}")
 	public ResponseEntity<String> deleteProduct(@PathVariable String productId) throws Exception {
 		logger.info("!!!...Ready to Delete Product...!!!");
 		productService.deleteProduct(productId);
@@ -120,7 +120,7 @@ public class ProductController {
 		return response;	
 }
 	//ENTER BUYERID IN PLACE OF PRODUCTID
-	@RequestMapping(method=RequestMethod.DELETE, value="/subproducts/{productId}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/subproducts/delete/{productId}")
 	public ResponseEntity<String> deleteSProduct(@PathVariable String productId) throws Exception {
 		logger.info("!!!...Ready to Remove Subscribed Product...!!!");
 		productService.deleteSProduct(productId);
