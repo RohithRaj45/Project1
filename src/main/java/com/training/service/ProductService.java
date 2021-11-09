@@ -66,6 +66,12 @@ public class ProductService {
 			throw new Exception("No Products Available!!");
 		}
 	}
+	public String getSellerId(String productId) throws Exception {
+		Product product = productRepository.findById(productId).orElse(null);
+		if(product==null)
+			throw new Exception("Product does Not Exist");
+		return product.getSellerId();
+	}
 	public String addProduct(Product product) throws Exception
 	{
 		Product products = productRepository.findById(product.getProductId()).orElse(null);

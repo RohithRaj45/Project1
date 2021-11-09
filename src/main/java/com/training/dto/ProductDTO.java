@@ -24,7 +24,10 @@ public class ProductDTO {
 		@Pattern(regexp ="^.{1,500}$", message = "{Product.description.invalid}")
 		private String description;
 		@NotNull(message = "{Product.sellerid.absent}")
-	    private String sellerid;
+		@Column(name = "image", nullable = false)
+		private String image;
+		@Column(name = "sellerid")
+	    private String sellerId;
 		private String category;
 		private String subcategory;
 		private Double productrating;
@@ -34,15 +37,16 @@ public class ProductDTO {
 			
 		}
 		
-		public ProductDTO(String productId, String poductname, Integer price, Integer stock, String description,
-				String sellerid, String category, String subcategory, Double productrating) {
+		public ProductDTO(String productId, String poductname, Integer price, Integer stock, String description, String image,
+				String sellerId, String category, String subcategory, Double productrating) {
 			super();
 			this.productId = productId;
 			this.productname = poductname;
 			this.price = price;
 			this.stock = stock;
 			this.description = description;
-			this.sellerid = sellerid;
+			this.image=image;
+			this.sellerId = sellerId;
 			this.category = category;
 			this.subcategory = subcategory;
 			this.productrating = productrating;
@@ -78,11 +82,19 @@ public class ProductDTO {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		public String getSellerid() {
-			return sellerid;
+		public String getImage() {
+			return image;
 		}
-		public void setSellerid(String sellerid) {
-			this.sellerid = sellerid;
+
+		public void setImage(String image) {
+			this.image = image;
+		}
+
+		public String getSellerId() {
+			return sellerId;
+		}
+		public void setSellerId(String sellerId) {
+			this.sellerId = sellerId;
 		}
 		public String getCategory() {
 			return category;

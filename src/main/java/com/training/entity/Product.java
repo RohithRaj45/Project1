@@ -16,7 +16,9 @@ public class Product {
 	private Integer price;
     private Integer stock;
 	private String description;
-    private String sellerid;
+	private String image;
+	@Column(name = "sellerid")
+    private String sellerId;
 	private String category;
 	private String subcategory;
 	private Double productrating;
@@ -52,11 +54,17 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getSellerid() {
-		return sellerid;
+	public String getImage() {
+		return image;
 	}
-	public void setSellerid(String sellerid) {
-		this.sellerid = sellerid;
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getSellerId() {
+		return sellerId;
+	}
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
 	}
 	public String getCategory() {
 		return category;

@@ -5,7 +5,6 @@ import com.training.entity.SubscribedProduct;
 public class SubscribedProductDTO {
 	
 	private String buyerId;
-	
 	private String productId;
 	private Integer quantity;
 	
