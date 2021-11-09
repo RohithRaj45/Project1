@@ -52,6 +52,20 @@ public class ProductService {
 			throw new Exception("No Products Available!!");
 		}
 	}
+	public Iterable<Product> getProductsbyProductName(String productname) throws Exception
+	{
+		Iterable<Product> products = productRepository.findDistinctByproductname(productname);
+		if(products.iterator().hasNext())
+		{
+			logger.info("products are shown according to product Name");
+			return products;
+	}
+		else
+		{
+			logger.info("This product Name products are not available");
+			throw new Exception("No Products Available!!");
+		}
+	}
 	public Iterable<Product> fetchProducts(String productname, String category) throws Exception
 	{
 		Iterable<Product> products = productRepository.fetchProducts(productname, category);
@@ -66,11 +80,32 @@ public class ProductService {
 			throw new Exception("No Products Available!!");
 		}
 	}
+	public Iterable<SubscribedProduct> fetchSubProducts(String productId, String buyerId) throws Exception
+	{
+		Iterable<SubscribedProduct> products = subRepo.fetchSubProducts(productId, buyerId);
+		if(products.iterator().hasNext())
+		{
+			logger.info("details are shown according to  productId & BuyerId ");
+			return products;
+	}
+		else
+		{
+			logger.info("This  productId & BuyerId details are not available");
+			throw new Exception("No Details Available!!");
+		}
+	}
 	public String getSellerId(String productId) throws Exception {
 		Product product = productRepository.findById(productId).orElse(null);
 		if(product==null)
 			throw new Exception("Product does Not Exist");
 		return product.getSellerId();
+	}
+	
+	public String getBuyerId(String buyerId) throws Exception {
+		SubscribedProduct product = subRepo.findById(buyerId).orElse(null);
+		if(product==null)
+			throw new Exception("Product does Not Exist");
+		return product.getBuyerId();
 	}
 	public String addProduct(Product product) throws Exception
 	{

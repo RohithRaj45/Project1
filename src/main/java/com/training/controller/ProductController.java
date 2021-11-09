@@ -51,12 +51,31 @@ public class ProductController {
 		logger.info("Fetched products categorically...!");
 		return response;
 	}
+	
+	@RequestMapping("/getproducts/product/{productname}")
+	public ResponseEntity<Iterable<Product>> getProductsbyProductName(@PathVariable String productname) throws Exception {
+		logger.info("Searching products by product name");
+		Iterable<Product> products = productService.getProductsbyProductName(productname);
+		ResponseEntity<Iterable<Product>> response = new ResponseEntity<Iterable<Product>>(products,HttpStatus.OK);
+		logger.info("Fetched products by product name...!");
+		return response;
+	}
+	
 	@RequestMapping("/getproducts/{productname}/{category}")
 	public ResponseEntity<Iterable<Product>> fetchproducts(@PathVariable String productname,@PathVariable String category) throws Exception {
 		logger.info("Searching products through product Name and category");
 		Iterable<Product> products = productService.fetchProducts(productname,category);
 		ResponseEntity<Iterable<Product>> response = new ResponseEntity<Iterable<Product>>(products,HttpStatus.OK);
 		logger.info("Fetched products through product Name and category...!");
+		return response;
+	}
+	
+	@RequestMapping("/getsubproducts/{productId}/{buyerId}")
+	public ResponseEntity<Iterable<SubscribedProduct>> fetchSubproducts(@PathVariable String productId,@PathVariable String buyerId) throws Exception {
+		logger.info("Searching details through productId and BuyerId");
+		Iterable<SubscribedProduct> products = productService.fetchSubProducts(productId,buyerId);
+		ResponseEntity<Iterable<SubscribedProduct>> response = new ResponseEntity<Iterable<SubscribedProduct>>(products,HttpStatus.OK);
+		logger.info("Fetched details through  productId and BuyerId...!");
 		return response;
 	}
 	
